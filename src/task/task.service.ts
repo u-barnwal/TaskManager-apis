@@ -20,13 +20,13 @@ export class TaskService {
 
     await this.taskRepository.save(task);
 
-    const taskDTO: TaskDTO = new TaskDTO();
+    // const taskDTO: TaskDTO = new TaskDTO();
 
-    taskDTO.id = task.id;
-    taskDTO.title = task.title;
-    taskDTO.description = task.description;
-    taskDTO.status = task.status;
+    // taskDTO.id = task.id;
+    // taskDTO.title = task.title;
+    // taskDTO.description = task.description;
+    // taskDTO.status = task.status;
 
-    return taskDTO;
+    return task;
   }
 }
