@@ -54,4 +54,12 @@ export class TaskService {
     // return the task as a dto
     return TaskDTO.fromEntity(task);
   }
+
+  public async deleteOne(id: number) {
+    // fetch and check if the task exists
+    const task: Task = await this.getOne(id);
+
+    // delete the task
+    await this.taskRepository.remove(task);
+  }
 }

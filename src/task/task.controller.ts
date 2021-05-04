@@ -1,4 +1,14 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { response } from 'express';
 import { CreateTaskDTO } from 'src/dto/create-task.dto';
 import { UpdateTaskDTO } from 'src/dto/update-task.dto';
@@ -29,5 +39,11 @@ export class TaskController {
     @Body() updateTaskRequest: UpdateTaskDTO,
   ) {
     return await this.taskService.updateOne(id, updateTaskRequest);
+  }
+
+  @Delete('/:id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  public async deleteOne(@Param('id') id: number) {
+    await this.taskService.deleteOne(id);
   }
 }
