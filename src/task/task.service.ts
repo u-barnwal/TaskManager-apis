@@ -46,7 +46,10 @@ export class TaskService {
     // check which properties are set in the dto
     task.title = updateTaskRequest.title || task.title;
     task.description = updateTaskRequest.description || task.description;
-    task.status = updateTaskRequest.status || task.status;
+    task.status =
+      updateTaskRequest.status === undefined
+        ? task.status
+        : updateTaskRequest.status;
 
     // update the properties on the task
     await this.taskRepository.save(task);
