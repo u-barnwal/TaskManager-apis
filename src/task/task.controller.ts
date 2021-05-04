@@ -1,4 +1,5 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { response } from 'express';
 import { CreateTaskDTO } from 'src/dto/create-task.dto';
 import { TaskService } from './task.service';
 
@@ -6,10 +7,13 @@ import { TaskService } from './task.service';
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
+  @Get()
+  public async getAll() {
+    return await this.taskService.getAll();
+  }
+
   @Post()
   public async createOne(@Body() createTaskRequest: CreateTaskDTO) {
-    const resp = await this.taskService.createOne(createTaskRequest);
-
-    return resp;
+    return await this.taskService.createOne(createTaskRequest);
   }
 }

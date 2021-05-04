@@ -20,13 +20,12 @@ export class TaskService {
 
     await this.taskRepository.save(task);
 
-    // const taskDTO: TaskDTO = new TaskDTO();
+    return TaskDTO.fromEntity(task);
+  }
 
-    // taskDTO.id = task.id;
-    // taskDTO.title = task.title;
-    // taskDTO.description = task.description;
-    // taskDTO.status = task.status;
+  public async getAll() {
+    const tasks: Task[] = await this.taskRepository.find();
 
-    return task;
+    return tasks.map((task) => TaskDTO.fromEntity(task));
   }
 }
